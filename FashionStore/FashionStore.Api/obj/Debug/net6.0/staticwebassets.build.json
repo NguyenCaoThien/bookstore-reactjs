@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "xLOp0HfZ5MPV+qW0ps9Y8epBPiJRvOm7QumKdkUayVY=",
+  "Source": "FashionStore.Api",
+  "BasePath": "_content/FashionStore.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
