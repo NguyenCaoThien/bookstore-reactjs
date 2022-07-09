@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D6PFR/r+6BKDV75BjS1OCLwMf1p+DdM5MeCdTN7A2DoxDTtl/9AXF9nJOp/Zklr9v5yOSUvETMq0aa7SN0148w==",
+  "dgSpecHash": "oxVsIDcLREcisLGLsbLSXT7TPOylUmVlGN5JfvQk9ersPS/m4IrXu1bCrXHGnkNsVCupdvNtASZQdAi/r/+5pg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admins\\Desktop\\ReactJs_ECommerceProject\\fashionstore_reactjs\\bookstore_reactjs\\FashionStore\\FashionStore.Api\\FashionStore.Api.csproj",
+  "projectFilePath": "C:\\Users\\Admins\\Desktop\\ReactJs_ECommerceProject\\fashionstore_reactjs\\fashionstore_reactjs\\FashionStore\\FashionStore.Api\\FashionStore.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admins\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.6\\microsoft.data.sqlite.core.6.0.6.nupkg.sha512",
