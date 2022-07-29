@@ -11,9 +11,23 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Switch } from '@mui/material';
+import { Link, Switch } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
-const pages = ['CATALOG', 'ABOUT', 'CONTACT'];
+const pages = [
+ {
+  title:'catalog',
+  path: '/catalog'
+ },
+ {
+  title:'about',
+  path: '/about'
+ },
+ {
+  title:'contact',
+  path: '/contact'
+ }
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -57,10 +71,11 @@ const AppHeader = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>                         
               {pages.map((page) => (
                 <Button
-                  key={page}
                   sx={{ my: 2, color: 'white', display: 'block' }}
+                  component={NavLink}
+                  to={page.path}
                 >
-                  {page}
+                  {page.title}
                 </Button>
               ))}
           </Box>      
@@ -96,9 +111,9 @@ const AppHeader = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
