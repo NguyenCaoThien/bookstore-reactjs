@@ -1,9 +1,17 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 const ProductCard = ()=>{
 
 	return (
 		<Card sx={{maxWidth: 345}}>
+			<CardHeader avatar={
+				<Avatar sx={{bgcolor: '#2e80bd'}} aria-label="product">
+					R
+				</Avatar>
+			}
+			title="Bottle"
+			/>
 			<CardMedia
 			component="img"
 			height= "140"
@@ -12,17 +20,16 @@ const ProductCard = ()=>{
 			>
 			</CardMedia>
 			<CardContent>
-				<Typography gutterBottom variant="h5" component="div">
-				Lizard
+				<Typography gutterBottom variant="h5" component="div" sx={{color:'rgb(156, 39, 176)'}}>
+				$10.00
 				</Typography>
 				<Typography variant="body2" color="text.secondary">
-				Lizards are a widespread group of squamate reptiles, with over 6,000
-				species, ranging across all continents except Antarctica
+				TypeScript / Boards
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Button size="small">Share</Button>
-				<Button size="small">Learn More</Button>
+				<Button size="small">ADD TO CARD</Button>
+				<Button size="small">VIEW</Button>
 			</CardActions>
 		</Card>
 	)
