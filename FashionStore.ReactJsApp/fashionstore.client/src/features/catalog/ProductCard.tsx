@@ -1,7 +1,13 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { Product } from "../../models/product";
 
-const ProductCard = ()=>{
+interface Props{
+	product: Product
+}
+
+const ProductCard = (props: Props)=>{
+	const {product}= props;
+	debugger;
 
 	return (
 		<Card sx={{maxWidth: 345}}>
@@ -10,21 +16,21 @@ const ProductCard = ()=>{
 					R
 				</Avatar>
 			}
-			title="Bottle"
+			title={product.name}
 			/>
 			<CardMedia
 			component="img"
 			height= "140"
-			image = {require("../../assets/images/boot-ang1.png")}
+			image = {require(`../../assets${product.pictureUrl}`)}
 			alt="boot-ang1"
 			>
 			</CardMedia>
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="div" sx={{color:'rgb(156, 39, 176)'}}>
-				$10.00
+				${product.price}
 				</Typography>
 				<Typography variant="body2" color="text.secondary">
-				TypeScript / Boards
+				{product.brand + '/' + product.type}
 				</Typography>
 			</CardContent>
 			<CardActions>
