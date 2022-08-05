@@ -1,5 +1,4 @@
-import { CheckBox } from "@mui/icons-material";
-import { Autocomplete, FormControl, FormControlLabel, FormGroup, Grid, Paper, Radio, RadioGroup, TextField } from "@mui/material";
+import {  FormControl, FormControlLabel, Grid, Paper, Radio, RadioGroup, TextField } from "@mui/material";
 import CheckboxWithLabel from "../../components/Checkbox/Checkbox";
 import ProductList from "./ProductList";
 
