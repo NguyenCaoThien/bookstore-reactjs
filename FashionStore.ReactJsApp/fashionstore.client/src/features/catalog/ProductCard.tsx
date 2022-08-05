@@ -7,8 +7,6 @@ interface Props{
 
 const ProductCard = (props: Props)=>{
 	const {product}= props;
-	debugger;
-
 	return (
 		<Card sx={{maxWidth: 345}}>
 			<CardHeader avatar={

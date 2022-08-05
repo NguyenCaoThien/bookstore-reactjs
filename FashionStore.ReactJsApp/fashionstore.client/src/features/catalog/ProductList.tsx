@@ -9,10 +9,8 @@ const ProductList = () => {
 	]);
 
 	useEffect(() => {
-		debugger;
 		axios.get('https://localhost:7005/api/product')
 			.then((response) => {
-				debugger;
 				setProducts(response.data);
 			}).catch(error=> console.log("error", error));
 	}, []);
