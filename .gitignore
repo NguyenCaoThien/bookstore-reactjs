@@ -1,8 +1,6 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/BookStore/BookStore.Api/obj
-/BookStore/BookStore.Api/bin/Debug/net6.0
-/BookStore/.vscode
-/BookStore/.vs/BookStore
+FashionStore/.vs/
+FashionStore/FashionStore.Api/obj/
