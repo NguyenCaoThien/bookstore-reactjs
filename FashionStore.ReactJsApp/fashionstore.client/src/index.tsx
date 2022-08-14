@@ -7,7 +7,9 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import CatalogPage from './features/catalog/CatalogPage';
+import ProductDetail from './features/product/ProductDetail';
+import ProductPage from './features/product/ProductPage';
+import ProductList from './features/product/ProductList';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,7 +20,10 @@ root.render(
   <BrowserRouter >
     <Routes>
       <Route path='/' element={<App/>}>
-        <Route path='/catalog' element={<CatalogPage/>}/>
+        <Route  path='product' element={<ProductPage/>}>
+          <Route index element={<ProductList/>}/>
+        </Route>
+        <Route path='product/:productId' element={<ProductDetail/>}/>
       </Route>
     </Routes>
   </BrowserRouter>

@@ -1,4 +1,5 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import { Product } from "../../models/product";
 
 interface Props{
@@ -33,9 +34,13 @@ const ProductCard = (props: Props)=>{
 			</CardContent>
 			<CardActions>
 				<Button size="small">ADD TO CARD</Button>
-				<Button size="small">VIEW</Button>
+				<Button
+				  component={NavLink}
+					to={`${product.id}`}
+					size="small">VIEW</Button>
 			</CardActions>
 		</Card>
+
 	)
 }
 

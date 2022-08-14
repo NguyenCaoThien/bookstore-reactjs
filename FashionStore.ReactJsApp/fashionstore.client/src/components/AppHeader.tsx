@@ -16,8 +16,8 @@ import { NavLink } from 'react-router-dom';
 
 const pages = [
  {
-  title:'catalog',
-  path: '/catalog'
+  title:'products',
+  path: '/product'
  },
  {
   title:'about',

@@ -6,3 +6,5 @@ FashionStore/.vs/
 FashionStore/FashionStore.Api/obj/
 FashionStore/FashionStore.Api/bin/
 FashionStore.ReactJsApp/fashionstore.client/package-lock.json
+FashionStore/FashionStore.Api/store.db-shm
+FashionStore/FashionStore.Api/store.db-wal
