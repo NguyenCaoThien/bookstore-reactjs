@@ -19,7 +19,6 @@ const ProductList = () => {
 		return null;
 	}
 
-
 	return (
 			<Grid container spacing={{ xs: 2, md: 3 }}>
 				{products.map((product: Product, index: number)=>(			

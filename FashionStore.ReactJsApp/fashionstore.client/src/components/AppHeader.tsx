@@ -7,27 +7,38 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, Switch } from '@mui/material';
+import { Badge, Switch } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const pages = [
- {
-  title:'products',
-  path: '/product'
- },
- {
-  title:'about',
-  path: '/about'
- },
- {
-  title:'contact',
-  path: '/contact'
- }
+  {
+    title: 'products',
+    path: '/product'
+  },
+  {
+    title: 'about',
+    path: '/about'
+  },
+  {
+    title: 'contact',
+    path: '/contact'
+  }
 ];
+
+const settingPages = [
+  {
+    title: 'login',
+    path: '/login'
+  },
+  {
+    title: 'register',
+    path: '/register'
+  }
+]
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -47,13 +58,13 @@ const AppHeader = () => {
     <AppBar position="static">
       <Container fixed>
         <Toolbar disableGutters  >
-          <Box sx={{display: { xs: 'none', md: 'flex' }}}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Typography
               variant="h6"
               noWrap
               component="a"
               href="/"
-              sx={{               
+              sx={{
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
@@ -63,35 +74,55 @@ const AppHeader = () => {
               }}
             >
               FASHION-STORE
-            </Typography>  
-            <Switch {...label}  defaultChecked />
+            </Typography>
+            <Switch {...label} defaultChecked />
           </Box>
 
-                         
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>                         
-              {pages.map((page) => (
-                <Button
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                  component={NavLink}
-                  to={page.path}
-                >
-                  {page.title}
-                </Button>
-              ))}
-          </Box>      
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                component={NavLink}
+                to={page.path}
+              >
+                {page.title}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <IconButton size="large" color="inherit" sx={{my:1}}>
+              <Badge badgeContent={5} color="error">
+                <ShoppingCartIcon></ShoppingCartIcon>
+              </Badge>
+            </IconButton>
+
+            {settingPages.map((page) => (
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                component={NavLink}
+                to={page.path}>
+                {page.title}
+              </Button>
+            ))}
+          </Box>
 
           {/* Responsive design for mobile devices */}
-        
-          <Box sx={{flexGrow: 1, display:{xs: 'flex', md:'none'}}}>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                <MenuIcon />
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -117,7 +148,7 @@ const AppHeader = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>   
+          </Box>
           <Typography
             variant="h5"
             noWrap
@@ -135,7 +166,7 @@ const AppHeader = () => {
             }}
           >
             FASHION-STORE
-          </Typography>       
+          </Typography>
         </Toolbar>
       </Container>
     </AppBar>
