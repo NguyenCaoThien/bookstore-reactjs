@@ -1,10 +1,16 @@
 using FashionStore.Api.Controllers.Data;
+using FashionStore.Api.Interfaces.IRepos;
+using FashionStore.Api.Interfaces.IServices;
+using FashionStore.Api.Repositories;
+using FashionStore.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<IBasketServices, BasketServices>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

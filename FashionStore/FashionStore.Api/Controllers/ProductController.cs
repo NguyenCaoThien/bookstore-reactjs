@@ -28,6 +28,5 @@ namespace FashionStore.Api.Controllers
             var product = await this._storeDbContext.Products.FindAsync(id);
             return Ok(product);
         }
-
     }
 }

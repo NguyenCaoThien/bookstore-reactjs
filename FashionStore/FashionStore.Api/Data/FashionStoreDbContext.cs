@@ -6,7 +6,7 @@ namespace FashionStore.Api.Controllers.Data
 {
     public class FashionStoreDbContext: DbContext
     {
-        public FashionStoreDbContext(DbContextOptions options): base(options)
+        public FashionStoreDbContext(DbContextOptions<FashionStoreDbContext> options): base(options)
         {
         }
 

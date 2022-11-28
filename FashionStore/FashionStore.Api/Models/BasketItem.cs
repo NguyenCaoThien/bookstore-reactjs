@@ -1,4 +1,5 @@
-﻿using FashionStore.Api.Controllers.Models;
+﻿using FashionStore.Api.Controllers.Data;
+using FashionStore.Api.Controllers.Models;
 
 namespace FashionStore.Api.Models
 {
@@ -9,6 +10,6 @@ namespace FashionStore.Api.Models
         public int ProductId { get; set; }
         public Product Product { get; set; } = new Product();
         public int BasketId { get; set; }
-        public Basket Basket { get; set; } = new Basket();
+        public Basket Basket { get; set; }
     }
 }
