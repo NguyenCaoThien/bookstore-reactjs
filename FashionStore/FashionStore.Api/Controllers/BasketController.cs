@@ -24,7 +24,7 @@ namespace FashionStore.Api.Controllers
         public async Task<BasketDto> GetBasket(string buyerId)
         {
             var basket = await _basketServices.RetrieveBasket(buyerId);
-            return BasketDto.CreateItem(basket);
+            return new BasketDto(basket);
         }       
 
         [HttpPost]

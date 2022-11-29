@@ -6,6 +6,7 @@ namespace FashionStore.Api.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private IBasketRepository _basketRepository;
+        private IProductRepository _productRepository;
         private readonly FashionStoreDbContext _fashionStoreDbContext;
 
         public UnitOfWork(FashionStoreDbContext fashionStoreDbContext)
@@ -16,6 +17,11 @@ namespace FashionStore.Api.Repositories
         public IBasketRepository BasketRepository
         {
             get { return _basketRepository ?? new BasketRepository(_fashionStoreDbContext); }
+        }
+
+        public IProductRepository ProductRepository
+        {
+            get { return _productRepository ?? new ProductRepository(_fashionStoreDbContext); }
         }
         public void Commit()
         {

@@ -20,6 +20,11 @@ namespace FashionStore.Api.Repositories
           return await dbSet.FindAsync(id);
         }
 
+        public virtual async Task<IEnumerable<TEntity>> GetAlls()
+        {
+            return await dbSet.ToListAsync();
+        }
+
         public virtual async Task AddAsync(TEntity entity)
         {
            await dbSet.AddAsync(entity);

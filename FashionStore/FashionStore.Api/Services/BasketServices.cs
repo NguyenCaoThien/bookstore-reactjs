@@ -67,7 +67,7 @@ namespace FashionStore.Api.Services
 
             basket.AddItem(product, quantity);
             bool isSaved = await _unitOfWork.CommitAsync();
-            return isSaved ? BasketDto.CreateItem(basket) : new BasketDto();
+            return isSaved ? new BasketDto(basket) : new BasketDto();
         }
         #endregion
     }

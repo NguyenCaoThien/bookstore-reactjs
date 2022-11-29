@@ -1,7 +1,7 @@
 ﻿using FashionStore.Api.Controllers.Data;
 using FashionStore.Api.Controllers.Models;
+using FashionStore.Api.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FashionStore.Api.Controllers
 {
@@ -9,23 +9,23 @@ namespace FashionStore.Api.Controllers
     [Route("api/product")]
     public class ProductController : Controller
     {
-        private readonly FashionStoreDbContext _storeDbContext;
-        public ProductController(FashionStoreDbContext storeDbContext)
+        private readonly IProductServices _productServices;
+        public ProductController(IProductServices productServices)
         {
-            this._storeDbContext = storeDbContext;
+            _productServices = productServices;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetAlls()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAlls()
         {
-            var products = await this._storeDbContext.Products.ToListAsync();
+            var products = await _productServices.GetAllProducts();
             return Ok(products);
         }       
 
         [HttpGet("id")]
         public async Task<ActionResult<Product>> GetById(int id)
         {
-            var product = await this._storeDbContext.Products.FindAsync(id);
+            var product = await _productServices.GetProduct(id);
             return Ok(product);
         }
     }
