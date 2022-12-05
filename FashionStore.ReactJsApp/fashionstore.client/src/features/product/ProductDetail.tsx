@@ -2,11 +2,9 @@ import { Button, Divider, Grid, TableBody, TableCell, TableContainer, TableRow, 
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { createData } from "../../commons/common-helper";
 import { Product } from "../../models/product";
 
-const createData = (criteria: string, data: string) => {
-	return { criteria, data };
-}
 
 const ProductDetail = () => {
 	const [product, setProduct] = useState<Product>();

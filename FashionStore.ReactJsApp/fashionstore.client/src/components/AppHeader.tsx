@@ -78,7 +78,6 @@ const AppHeader = () => {
             <Switch {...label} defaultChecked />
           </Box>
 
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -95,9 +94,11 @@ const AppHeader = () => {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" color="inherit" sx={{my:1}}>
+            <IconButton size="large" color="inherit" sx={{my:1}}
+            component={NavLink}
+            to={"/basket"}>
               <Badge badgeContent={5} color="error">
-                <ShoppingCartIcon></ShoppingCartIcon>
+                <ShoppingCartIcon ></ShoppingCartIcon>
               </Badge>
             </IconButton>
 

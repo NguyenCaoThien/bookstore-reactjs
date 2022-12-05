@@ -10,20 +10,21 @@ import {
 import ProductDetail from './features/product/ProductDetail';
 import ProductPage from './features/product/ProductPage';
 import ProductList from './features/product/ProductList';
+import Bastket from './features/basket/Basket';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-
 root.render(
   <BrowserRouter >
     <Routes>
       <Route path='/' element={<App/>}>
-        <Route  path='product' element={<ProductPage/>}>
+        <Route path='product' element={<ProductPage/>}>
           <Route index element={<ProductList/>}/>
         </Route>
         <Route path='product/:productId' element={<ProductDetail/>}/>
+        <Route path='basket' element={<Bastket/>}/>
       </Route>
     </Routes>
   </BrowserRouter>

@@ -12,7 +12,7 @@ const ProductList = () => {
 		axios.get('https://localhost:7005/api/product')
 			.then((response) => {
 				setProducts(response.data);
-			}).catch(error=> console.log("error", error));
+			}).catch(error => console.log("error", error));
 	}, []);
 
 	if(!products){
