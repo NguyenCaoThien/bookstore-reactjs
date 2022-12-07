@@ -1,6 +1,7 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { flexbox, minWidth } from "@mui/system";
+import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const createData = (product: string, price: string, quantity: number, subTotal: string) => {
 	return { product, price, quantity, subTotal };
@@ -48,7 +49,13 @@ const Bastket = () => {
 								{row.price}
 							</TableCell>
 							<TableCell align="left">
+								<IconButton>
+									<RemoveIcon sx={{color: "red", fontSize: 19}}></RemoveIcon>
+								</IconButton>
 								{row.quantity}
+								<IconButton>
+									<AddIcon sx={{color: "purple", fontSize: 19}}></AddIcon>
+								</IconButton>
 							</TableCell>
 							<TableCell align="left">
 								{row.subTotal}
