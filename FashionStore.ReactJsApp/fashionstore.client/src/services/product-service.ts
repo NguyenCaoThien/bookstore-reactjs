@@ -1,6 +1,5 @@
-
-const getProduct = ()=>{
+const productServices = {
 
 }
 
-export default getProduct;
+export default productServices;

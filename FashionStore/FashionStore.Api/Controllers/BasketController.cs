@@ -20,7 +20,6 @@ namespace FashionStore.Api.Controllers
         }
 
         [HttpGet]
-        [Route("getBasket")]
         public async Task<BasketDto> GetBasket(string buyerId)
         {
             var basket = await _basketServices.RetrieveBasket(buyerId);
@@ -28,13 +27,13 @@ namespace FashionStore.Api.Controllers
         }       
 
         [HttpPost]
-        [Route("createBasket")]
         public async Task<Basket> CreateBasket(string buyerId)
         {
             return await _basketServices.CreateBasket(buyerId, Response);
         }
 
-        [HttpPost("/additemtobasket")]
+        [HttpPost]
+        [Route("additemtobasket")]
         public async Task<BasketDto> AddItemToBasket(string buyerId, int productId, int quantity)
         {
             return await _basketServices.AddItemToBasket(buyerId, productId, quantity, Response);
