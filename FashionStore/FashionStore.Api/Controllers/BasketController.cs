@@ -34,9 +34,10 @@ namespace FashionStore.Api.Controllers
 
         [HttpPost]
         [Route("additemtobasket")]
-        public async Task<BasketDto> AddItemToBasket(string buyerId, int productId, int quantity)
+        public async Task<BasketDto> AddItemToBasket(BasketItem basketItems)
         {
-            return await _basketServices.AddItemToBasket(buyerId, productId, quantity, Response);
+            var buyerId = _basketServices.GetBuyerId(Request);
+            return await _basketServices.AddItemToBasket(buyerId, basketItems.ProductId, basketItems.Quantity, Response);
         }
     }
 }

@@ -69,6 +69,10 @@ namespace FashionStore.Api.Services
             bool isSaved = await _unitOfWork.CommitAsync();
             return isSaved ? new BasketDto(basket) : new BasketDto();
         }
+        public string GetBuyerId(HttpRequest httpRequest)
+        {
+            return httpRequest.Cookies[BUYER_ID_KEY] ?? null;
+        }
         #endregion
     }
 

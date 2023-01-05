@@ -13,7 +13,5 @@ namespace FashionStore.Api.Dtos
         public string ProductType { get; set; } = string.Empty;
         public string ProductBrand { get; set; } = string.Empty;
         public int ProductStockQuantity { get; set; }
-
-      
     }
 }

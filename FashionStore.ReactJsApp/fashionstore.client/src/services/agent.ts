@@ -1,10 +1,43 @@
 import axios, { AxiosResponse } from "axios";
+import { resolve } from "path";
 
-const responseBody = (data: AxiosResponse) => data.data;
-const serviceRequest = {
-	get: (url: string, params?: URLSearchParams) => axios.get(url, { params }).then(responseBody),
-	post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
-	delete: (url: string) => axios.delete(url).then(responseBody)
+const enum ErrorCodes {
+  InternalServer = 500,
 }
+const responseBody = (data: AxiosResponse) => data.data;
+const errorHandler = (error: any, reject: any) => {
+  if (
+    error?.response?.status === ErrorCodes.InternalServer &&
+    error?.response?.data
+  ) {
+    reject(error.response.data);
+    return;
+  }
+  reject(error);
+};
 
-export default serviceRequest;
+const getAsync = (url: string, params?: URLSearchParams) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, { params })
+      .then((data) => resolve(data.data))
+      .catch((error) => errorHandler(error, reject));
+  });
+};
+
+const postAsync = (url: string, body: {}): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(url, body)
+      .then((data) => resolve(data.data))
+      .catch((error) => errorHandler(error, reject));
+  });
+};
+
+const deleteAsync = (url: string) => {
+  axios.delete(url).then(responseBody);
+};
+
+export const serviceRequest = {
+  postAsync,
+};
