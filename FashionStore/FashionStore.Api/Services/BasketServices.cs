@@ -43,7 +43,7 @@ namespace FashionStore.Api.Services
                 var cookieOpts = new CookieOptions()
                 {
                     IsEssential = true,
-                    Expires = DateTime.Now.AddDays(30)
+                    Expires = DateTime.Now.AddDays(30),
                 };
 
                 buyerId = Guid.NewGuid().ToString();
@@ -71,7 +71,7 @@ namespace FashionStore.Api.Services
         }
         public string GetBuyerId(HttpRequest httpRequest)
         {
-            return httpRequest.Cookies[BUYER_ID_KEY] ?? null;
+            return httpRequest.Cookies[BUYER_ID_KEY];
         }
         #endregion
     }

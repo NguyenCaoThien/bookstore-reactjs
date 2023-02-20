@@ -8,7 +8,7 @@ const addItemToBasket = async (productId: number, quantity: number) => {
   return serviceRequest.postAsync(`${basketUrl}/additemtobasket`, requestBody);
 };
 
-const basketUrl = "https://localhost:7005/api/basket";
+const basketUrl = "http://localhost:7005/api/basket";
 export const basketServices = {
   addItemToBasket,
 };

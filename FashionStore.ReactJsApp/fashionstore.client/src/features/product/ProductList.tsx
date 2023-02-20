@@ -9,24 +9,24 @@ const ProductList = () => {
 	]);
 
 	useEffect(() => {
-		axios.get('https://localhost:7005/api/product')
+		axios.get('http://localhost:7005/api/product')
 			.then((response) => {
 				setProducts(response.data);
 			}).catch(error => console.log("error", error));
 	}, []);
 
-	if(!products){
+	if (!products) {
 		return null;
 	}
 
 	return (
-			<Grid container spacing={{ xs: 2, md: 3 }}>
-				{products.map((product: Product, index: number)=>(			
-					<Grid item xs={2} sm={4} md={4} key={index}>
-						<ProductCard product={product} />
-					</Grid>									
-				))}
-			</Grid>
+		<Grid container spacing={{ xs: 2, md: 3 }}>
+			{products.map((product: Product, index: number) => (
+				<Grid item xs={2} sm={4} md={4} key={index}>
+					<ProductCard product={product} />
+				</Grid>
+			))}
+		</Grid>
 	)
 }
 

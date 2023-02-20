@@ -14,6 +14,14 @@ builder.Services.AddTransient<IBasketServices, BasketServices>();
 builder.Services.AddTransient<IProductServices, ProductServices>();
 
 builder.Services.AddControllers();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,13 +33,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000");
             policy.AllowAnyHeader();
             policy.AllowAnyMethod();
+            policy.AllowCredentials();
+            policy.WithOrigins("http://localhost:3000");
         });
 }
 );
-
 var app = builder.Build();
 
 using(var serviceScope = app.Services.CreateScope())
@@ -61,8 +69,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
-
+app.UseCookiePolicy();
 app.UseAuthorization();
+app.UseSession();
  
 app.MapControllers();
 

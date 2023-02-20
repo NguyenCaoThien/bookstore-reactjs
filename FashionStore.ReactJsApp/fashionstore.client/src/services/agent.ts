@@ -4,6 +4,10 @@ import { resolve } from "path";
 const enum ErrorCodes {
   InternalServer = 500,
 }
+
+axios.defaults.baseURL = "http://localhost:7005/api"
+axios.defaults.withCredentials = true;
+
 const responseBody = (data: AxiosResponse) => data.data;
 const errorHandler = (error: any, reject: any) => {
   if (

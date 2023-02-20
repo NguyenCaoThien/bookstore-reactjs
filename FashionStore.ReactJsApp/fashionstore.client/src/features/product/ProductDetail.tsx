@@ -11,7 +11,7 @@ const ProductDetail = () => {
 	const { productId } = useParams();
 
 	useEffect(() => {
-		axios.get(`https://localhost:7005/api/product/id?id=${productId}`)
+		axios.get(`http://localhost:7005/api/product/id?id=${productId}`)
 			.then((response) => {
 				setProduct(response.data as Product);
 			}, error => {
@@ -56,16 +56,16 @@ const ProductDetail = () => {
 								</TableCell>
 							</TableRow>
 						))}
-						<TableCell 	sx={{width: "50%"}}>
+						<TableCell sx={{ width: "50%" }}>
 							<TextField id="product-quantity"
-							label="Quantity in cart"
-							type="number"
-							InputProps={{
-								inputProps:{
-									min: 0
-								}
-							}}
-						></TextField>
+								label="Quantity in cart"
+								type="number"
+								InputProps={{
+									inputProps: {
+										min: 0
+									}
+								}}
+							></TextField>
 						</TableCell>
 						<TableCell>
 							<Button variant="contained">Add to cart</Button>

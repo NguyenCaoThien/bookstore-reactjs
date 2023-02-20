@@ -18,11 +18,10 @@ interface Props {
 }
 
 const ProductCard = (props: Props) => {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const addItemToCart = async (product: Product) => {
-    debugger;
-    await basketServices.addItemToBasket(1, 1);
+    await basketServices.addItemToBasket(product.id, 1);
   };
 
   const { product } = props;

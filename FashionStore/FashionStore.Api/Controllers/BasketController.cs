@@ -4,6 +4,7 @@ using FashionStore.Api.Dtos;
 using FashionStore.Api.Interfaces.IServices;
 using FashionStore.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace FashionStore.Api.Controllers
 {
@@ -37,6 +38,8 @@ namespace FashionStore.Api.Controllers
         public async Task<BasketDto> AddItemToBasket(BasketItem basketItems)
         {
             var buyerId = _basketServices.GetBuyerId(Request);
+            string cookie = Request.Cookies["buyerId"];
+
             return await _basketServices.AddItemToBasket(buyerId, basketItems.ProductId, basketItems.Quantity, Response);
         }
     }

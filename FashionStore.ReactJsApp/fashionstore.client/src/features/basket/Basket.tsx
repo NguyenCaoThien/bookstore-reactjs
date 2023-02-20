@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import BasketSummary from "./BasketSummary";
 import BasketTable from "./BasketTable";
 
-
 const Bastket = () => {
 
 	return (
