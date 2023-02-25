@@ -20,7 +20,7 @@ const errorHandler = (error: any, reject: any) => {
   reject(error);
 };
 
-const getAsync = (url: string, params?: URLSearchParams) => {
+const getAsync = <T>(url: string, params?: URLSearchParams): Promise<T> => {
   return new Promise((resolve, reject) => {
     axios
       .get(url, { params })
@@ -44,4 +44,5 @@ const deleteAsync = (url: string) => {
 
 export const serviceRequest = {
   postAsync,
+  getAsync
 };

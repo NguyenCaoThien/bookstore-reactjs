@@ -21,6 +21,7 @@ namespace FashionStore.Api.Controllers
         }
 
         [HttpGet]
+        [Route("getbasket")]
         public async Task<BasketDto> GetBasket(string buyerId)
         {
             var basket = await _basketServices.RetrieveBasket(buyerId);
@@ -38,8 +39,6 @@ namespace FashionStore.Api.Controllers
         public async Task<BasketDto> AddItemToBasket(BasketItem basketItems)
         {
             var buyerId = _basketServices.GetBuyerId(Request);
-            string cookie = Request.Cookies["buyerId"];
-
             return await _basketServices.AddItemToBasket(buyerId, basketItems.ProductId, basketItems.Quantity, Response);
         }
     }

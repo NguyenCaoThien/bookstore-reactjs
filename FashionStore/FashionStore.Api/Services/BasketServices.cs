@@ -44,6 +44,8 @@ namespace FashionStore.Api.Services
                 {
                     IsEssential = true,
                     Expires = DateTime.Now.AddDays(30),
+                    SameSite = SameSiteMode.Strict,
+                    HttpOnly = false
                 };
 
                 buyerId = Guid.NewGuid().ToString();

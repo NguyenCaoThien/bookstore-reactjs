@@ -1,4 +1,10 @@
 export interface BasketItem {
-  productId: number;
-  quantity: number;
+  id: number;
+  productName: string;
+  productDes: string;
+  productPrice: number;
+  productPictureUrl: string;
+  productType: string;
+  productBrand: string;
+  productStockQuantity: number;
 }

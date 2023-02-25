@@ -2,40 +2,32 @@ import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useEffect } from "react";
-
-const createData = (product: string, price: string, quantity: number, subTotal: string) => {
-	return { product, price, quantity, subTotal };
-}
-
-const row = [
-	createData('Product', "$15", 5, "$75"),
-	createData('Product', "$15", 5, "$75"),
-	createData('Product', "$15", 5, "$75"),
-];
-
-const getCookie = (name: string): string | null => {
-	const cookieString = document.cookie;
-	if (cookieString.length === 0) {
-		return null;
-	}
-
-	const cookies = cookieString.split("; ");
-	for (const cookie of cookies) {
-		const [cookieName, cookieValue] = cookie.split("=");
-		if (cookieName === name) {
-			return decodeURIComponent(cookieValue);
-		}
-	}
-
-	return null;
-};
+import { useEffect, useState } from "react";
+import { basketServices } from "../../services/basket-service";
+import { Basket } from "../../models/basket";
+import { getCookie } from "../../commons/common-helper";
 
 const BasketTable = () => {
+	const [baskets, setBasket] = useState<Basket>();
 	useEffect(() => {
-		const myCookie = getCookie("buyerId");
-		debugger;
+		setBasketInfor();
 	}, []);
+
+	const setBasketInfor = async () => {
+		const myCookie = getCookie("buyerId");
+
+		if (myCookie == null) {
+			return;
+		}
+
+		const basketInfor: Basket = await getBasketInfor(myCookie ?? "");
+		const newBasket = Object.assign({}, basketInfor);
+		setBasket(newBasket);
+	}
+
+	const getBasketInfor = async (buyerId: string): Promise<Basket> => {
+		return await basketServices.getBasket(buyerId);
+	}
 
 	return (
 		<>
@@ -65,25 +57,25 @@ const BasketTable = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{row.map((row) => (
-							<TableRow key={row.product}>
+						{baskets?.basketItemDtos.map((basket) => (
+							<TableRow key={basket.id}>
 								<TableCell>
-									{row.product}
+									{basket.productName}
 								</TableCell>
 								<TableCell align="left">
-									{row.price}
+									{basket.productPrice}
 								</TableCell>
 								<TableCell align="left">
 									<IconButton>
 										<RemoveIcon sx={{ color: "red", fontSize: 19 }}></RemoveIcon>
 									</IconButton>
-									{row.quantity}
+									{basket.productStockQuantity}
 									<IconButton>
 										<AddIcon sx={{ color: "purple", fontSize: 19 }}></AddIcon>
 									</IconButton>
 								</TableCell>
 								<TableCell align="left">
-									{row.subTotal}
+									{basket.productPrice * basket.productStockQuantity}
 								</TableCell>
 								<TableCell>
 									<DeleteIcon sx={{ color: "red" }}></DeleteIcon>
