@@ -11,23 +11,27 @@ import ProductDetail from './features/product/ProductDetail';
 import ProductPage from './features/product/ProductPage';
 import ProductList from './features/product/ProductList';
 import Bastket from './features/basket/Basket';
+import { StoreProvider } from './context/StoreContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <BrowserRouter >
-    <Routes>
-      <Route path='/' element={<App/>}>
-        <Route path='product' element={<ProductPage/>}>
-          <Route index element={<ProductList/>}/>
+  <StoreProvider>
+    <BrowserRouter >
+      <Routes>
+        <Route path='/' element={<App />}>
+          <Route path='product' element={<ProductPage />}>
+            <Route index element={<ProductList />} />
+          </Route>
+          <Route path='product/:productId' element={<ProductDetail />} />
+          <Route path='basket' element={<Bastket />} />
         </Route>
-        <Route path='product/:productId' element={<ProductDetail/>}/>
-        <Route path='basket' element={<Bastket/>}/>
-      </Route>
-    </Routes>
-  </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+  </StoreProvider>
+
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>

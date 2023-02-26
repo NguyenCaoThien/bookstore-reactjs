@@ -2,13 +2,14 @@ import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { basketServices } from "../../services/basket-service";
 import { Basket } from "../../models/basket";
 import { getCookie } from "../../commons/common-helper";
+import { useStoreContext } from "../../context/StoreContext";
 
 const BasketTable = () => {
-	const [baskets, setBasket] = useState<Basket>();
+	const { basket, setBasket } = useStoreContext();
 	useEffect(() => {
 		setBasketInfor();
 	}, []);
@@ -57,7 +58,7 @@ const BasketTable = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{baskets?.basketItemDtos.map((basket) => (
+						{basket?.basketItemDtos.map((basket) => (
 							<TableRow key={basket.id}>
 								<TableCell>
 									{basket.productName}
