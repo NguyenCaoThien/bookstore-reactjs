@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useStoreContext } from "../../context/StoreContext";
 import { Product } from "../../models/product";
 import { basketServices } from "../../services/basket-service";
 
@@ -18,10 +19,11 @@ interface Props {
 }
 
 const ProductCard = (props: Props) => {
-  useEffect(() => { }, []);
+  const { setBasket } = useStoreContext();
 
   const addItemToCart = async (product: Product) => {
-    await basketServices.addItemToBasket(product.id, 1);
+    const basket = await basketServices.addItemToBasket(product.id, 1);
+    setBasket(basket);
   };
 
   const { product } = props;
