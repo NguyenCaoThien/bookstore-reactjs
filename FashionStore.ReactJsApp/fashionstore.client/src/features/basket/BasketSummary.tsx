@@ -15,8 +15,6 @@ const createData = (rowTitle: string, value: string) => {
 	return sumInfor;
 }
 
-
-
 const BasketSummary = () => {
 	const { basket } = useStoreContext();
 	const [sumaryInfo, setSumaryInfo] = useState<ISumaryInfo[]>([]);
