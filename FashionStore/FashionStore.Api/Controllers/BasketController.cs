@@ -22,24 +22,26 @@ namespace FashionStore.Api.Controllers
 
         [HttpGet]
         [Route("getbasket")]
-        public async Task<BasketDto> GetBasket(string buyerId)
+        public async Task<IActionResult> GetBasket(string buyerId)
         {
             var basket = await _basketServices.RetrieveBasket(buyerId);
-            return new BasketDto(basket);
+            return Ok(new BasketDto(basket));
         }       
 
         [HttpPost]
-        public async Task<Basket> CreateBasket(string buyerId)
+        public async Task<IActionResult> CreateBasket(string buyerId)
         {
-            return await _basketServices.CreateBasket(buyerId, Response);
+            var createdBasket = await _basketServices.CreateBasket(buyerId, Response);
+            return Ok(createdBasket);
         }
 
         [HttpPost]
         [Route("additemtobasket")]
-        public async Task<BasketDto> AddItemToBasket(BasketItem basketItems)
+        public async Task<IActionResult> AddItemToBasket(BasketItemDto basketItems)
         {
             var buyerId = _basketServices.GetBuyerId(Request);
-            return await _basketServices.AddItemToBasket(buyerId, basketItems.ProductId, basketItems.Quantity, Response);
+            var basketItem = await _basketServices.AddItemToBasket(buyerId, basketItems.ProductId, basketItems.ProductStockQuantity, Response);
+            return Ok(basketItem);
         }
     }
 }

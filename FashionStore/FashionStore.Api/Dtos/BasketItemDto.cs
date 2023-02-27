@@ -6,6 +6,7 @@ namespace FashionStore.Api.Dtos
     public class BasketItemDto
     {
         public int Id { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; } = string.Empty;
         public string ProductDes { get; set; } = string.Empty;
         public long ProductPrice { get; set; }

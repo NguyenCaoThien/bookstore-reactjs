@@ -1,5 +1,6 @@
 export interface BasketItem {
   id: number;
+  productId: number;
   productName: string;
   productDes: string;
   productPrice: number;

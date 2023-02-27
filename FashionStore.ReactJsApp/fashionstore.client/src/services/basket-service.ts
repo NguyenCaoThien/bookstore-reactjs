@@ -4,7 +4,7 @@ import { serviceRequest } from "./agent";
 const addItemToBasket = async (productId: number, quantity: number) => {
   const requestBody = {
     productId: productId,
-    quantity: quantity,
+    productStockQuantity: quantity,
   };
   return serviceRequest.postAsync(`${basketUrl}/additemtobasket`, requestBody);
 };

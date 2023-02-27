@@ -7,6 +7,7 @@ import { basketServices } from "../../services/basket-service";
 import { Basket } from "../../models/basket";
 import { getCookie } from "../../commons/common-helper";
 import { useStoreContext } from "../../context/StoreContext";
+import { BasketItem } from "../../models/basketitem";
 
 const BasketTable = () => {
 	const { basket, setBasket } = useStoreContext();
@@ -29,6 +30,11 @@ const BasketTable = () => {
 	const getBasketInfor = async (buyerId: string): Promise<Basket> => {
 		return await basketServices.getBasket(buyerId);
 	}
+
+  const onIncreaseItem = async(basketItem: BasketItem) => {
+    await basketServices.addItemToBasket(basketItem.productId, 1);
+		setBasketInfor();
+  }
 
 	return (
 		<>
@@ -71,7 +77,7 @@ const BasketTable = () => {
 										<RemoveIcon sx={{ color: "red", fontSize: 19 }}></RemoveIcon>
 									</IconButton>
 									{basket.productStockQuantity}
-									<IconButton>
+									<IconButton onClick={() => onIncreaseItem(basket)}>
 										<AddIcon sx={{ color: "purple", fontSize: 19 }}></AddIcon>
 									</IconButton>
 								</TableCell>

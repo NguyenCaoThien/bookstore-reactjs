@@ -16,13 +16,14 @@ namespace FashionStore.Api.Dtos
             BuyerId = basket.BuyerId;
             basketItemDtos = basket.BasketItems.Select(item => new BasketItemDto
             {
+                ProductId = item.ProductId,
                 ProductName = item.Product.Name,
                 ProductDes = item.Product.Description,
                 ProductPrice = item.Product.Price,
                 ProductPictureUrl = item.Product.PictureUrl,
                 ProductType = item.Product.Type,
                 ProductBrand = item.Product.Brand,
-                ProductStockQuantity = item.Quantity
+                ProductStockQuantity = item.Quantity                
             });
         }
     }
