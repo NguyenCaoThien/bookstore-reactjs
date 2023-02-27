@@ -44,5 +44,6 @@ const deleteAsync = (url: string) => {
 
 export const serviceRequest = {
   postAsync,
-  getAsync
+  getAsync,
+  deleteAsync
 };

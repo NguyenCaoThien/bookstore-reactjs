@@ -11,6 +11,7 @@ namespace FashionStore.Api.Interfaces.IServices
         Task<Basket> CreateBasket(string buyerId, HttpResponse httpResponse);
         Task<BasketDto> AddItemToBasket(string buyerId, int productId, int quantity, HttpResponse httpResponse);
         Task<bool> ReduceBasketItem(string buyerId, int productId, int quantity);
+        Task<bool> RemoveBasketItem(string buyerId, int productId);
         string GetBuyerId(HttpRequest httpRequest);
     }
 }

@@ -52,5 +52,14 @@ namespace FashionStore.Api.Controllers
             var isReduced = await _basketServices.ReduceBasketItem(buyerId, basketItems.ProductId, basketItems.ProductStockQuantity);
             return Ok(isReduced);
         }
+
+        [HttpDelete]
+        [Route("removebasketitem")]
+        public async Task<IActionResult> RemoveBasketItem([FromQuery]int productId)
+        {
+            var buyerId = _basketServices.GetBuyerId(Request);
+            var isReduced = await _basketServices.RemoveBasketItem(buyerId, productId);
+            return Ok(isReduced);
+        }
     }
 }

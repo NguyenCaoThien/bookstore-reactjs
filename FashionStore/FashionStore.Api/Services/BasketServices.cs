@@ -84,6 +84,19 @@ namespace FashionStore.Api.Services
             basket.ReduceBasketItem(product, quantity);
             return await _unitOfWork.CommitAsync();
         }
+
+        public async Task<bool> RemoveBasketItem(string buyerId, int productId)
+        {
+            var basket = await RetrieveBasket(buyerId);
+            var product = await GetProduct(productId);
+            if (product == null)
+            {
+                return false;
+            }
+
+            basket.RemoveBasketItem(product);
+            return await _unitOfWork.CommitAsync();
+        }
         public string GetBuyerId(HttpRequest httpRequest)
         {
             return httpRequest.Cookies[BUYER_ID_KEY];

@@ -41,6 +41,10 @@ const BasketTable = () => {
     setBasketInfor();
   }
 
+  const removeBasketItem = async (basketItem: BasketItem) => {
+    await basketServices.removeBasketItem(basketItem.productId);
+    setBasketInfor();
+  }
 	return (
 		<>
 			<TableContainer sx={{
@@ -90,7 +94,9 @@ const BasketTable = () => {
 									{basket.productPrice * basket.productStockQuantity}
 								</TableCell>
 								<TableCell>
-									<DeleteIcon sx={{ color: "red" }}></DeleteIcon>
+                  <IconButton onClick={() => removeBasketItem(basket)}>
+									  <DeleteIcon sx={{ color: "red" }} ></DeleteIcon>
+                  </IconButton>
 								</TableCell>
 							</TableRow>
 						))}

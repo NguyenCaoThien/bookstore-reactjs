@@ -22,9 +22,14 @@ const reduceBasketItem = (productId: number, quantity: number): Promise<boolean>
   return serviceRequest.postAsync(`${basketUrl}/reducebasketitem`, requestBody)
 }
 
+const removeBasketItem = (productId: number) => {
+  return serviceRequest.deleteAsync(`${basketUrl}/reducebasketitem?productId=${productId}`)
+}
+
 const basketUrl = "http://localhost:7005/api/basket";
 export const basketServices = {
   addItemToBasket,
   getBasket,
-  reduceBasketItem
+  reduceBasketItem,
+  removeBasketItem
 };

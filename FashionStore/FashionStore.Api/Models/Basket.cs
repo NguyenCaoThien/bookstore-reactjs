@@ -42,5 +42,15 @@ namespace FashionStore.Api.Models
                 existedBasket.Quantity -= quantity;
             }
         }
+
+        public void RemoveBasketItem(Product product)
+        {
+            var existedBasket = BasketItems.FirstOrDefault(p => p.ProductId == product.Id);
+
+            if (existedBasket != null)
+            {
+                BasketItems.Remove(existedBasket);
+            }
+        }
     }
 }
