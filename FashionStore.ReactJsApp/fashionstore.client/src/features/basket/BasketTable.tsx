@@ -13,7 +13,7 @@ const BasketTable = () => {
 	const { basket, setBasket } = useStoreContext();
 	useEffect(() => {
 		setBasketInfor();
-	}, []);
+	}, [basket]);
 
 	const setBasketInfor = async () => {
 		const myCookie = getCookie("buyerId");
@@ -31,20 +31,17 @@ const BasketTable = () => {
 		return await basketServices.getBasket(buyerId);
 	}
 
-  const onIncreaseItem = async(basketItem: BasketItem) => {
-    await basketServices.addItemToBasket(basketItem.productId, 1);
-		setBasketInfor();
-  }
+	const onIncreaseItem = async (basketItem: BasketItem) => {
+		await basketServices.addItemToBasket(basketItem.productId, 1);
+	}
 
-  const onDecreaseItem = async (basketItem: BasketItem) => {
-    await basketServices.reduceBasketItem(basketItem.productId, 1);
-    setBasketInfor();
-  }
+	const onDecreaseItem = async (basketItem: BasketItem) => {
+		await basketServices.reduceBasketItem(basketItem.productId, 1);
+	}
 
-  const removeBasketItem = async (basketItem: BasketItem) => {
-    await basketServices.removeBasketItem(basketItem.productId);
-    setBasketInfor();
-  }
+	const removeBasketItem = async (basketItem: BasketItem) => {
+		await basketServices.removeBasketItem(basketItem.productId);
+	}
 	return (
 		<>
 			<TableContainer sx={{
@@ -94,9 +91,9 @@ const BasketTable = () => {
 									{basket.productPrice * basket.productStockQuantity}
 								</TableCell>
 								<TableCell>
-                  <IconButton onClick={() => removeBasketItem(basket)}>
-									  <DeleteIcon sx={{ color: "red" }} ></DeleteIcon>
-                  </IconButton>
+									<IconButton onClick={() => removeBasketItem(basket)}>
+										<DeleteIcon sx={{ color: "red" }} ></DeleteIcon>
+									</IconButton>
 								</TableCell>
 							</TableRow>
 						))}
