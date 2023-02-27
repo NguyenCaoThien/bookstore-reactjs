@@ -13,8 +13,18 @@ const getBasket = (buyerId: string): Promise<Basket> => {
   return serviceRequest.getAsync<Basket>(`${basketUrl}/getbasket?buyerId=${buyerId}`);
 }
 
+const reduceBasketItem = (productId: number, quantity: number): Promise<boolean> => {
+  const requestBody = {
+    productId: productId,
+    productStockQuantity: quantity,
+  };
+
+  return serviceRequest.postAsync(`${basketUrl}/reducebasketitem`, requestBody)
+}
+
 const basketUrl = "http://localhost:7005/api/basket";
 export const basketServices = {
   addItemToBasket,
-  getBasket
+  getBasket,
+  reduceBasketItem
 };

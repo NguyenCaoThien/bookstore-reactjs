@@ -36,6 +36,11 @@ const BasketTable = () => {
 		setBasketInfor();
   }
 
+  const onDecreaseItem = async (basketItem: BasketItem) => {
+    await basketServices.reduceBasketItem(basketItem.productId, 1);
+    setBasketInfor();
+  }
+
 	return (
 		<>
 			<TableContainer sx={{
@@ -73,7 +78,7 @@ const BasketTable = () => {
 									{basket.productPrice}
 								</TableCell>
 								<TableCell align="left">
-									<IconButton>
+									<IconButton onClick={() => onDecreaseItem(basket)}>
 										<RemoveIcon sx={{ color: "red", fontSize: 19 }}></RemoveIcon>
 									</IconButton>
 									{basket.productStockQuantity}

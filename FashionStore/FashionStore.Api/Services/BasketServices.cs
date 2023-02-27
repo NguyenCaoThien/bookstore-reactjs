@@ -71,6 +71,19 @@ namespace FashionStore.Api.Services
             bool isSaved = await _unitOfWork.CommitAsync();
             return isSaved ? new BasketDto(basket) : new BasketDto();
         }
+
+        public async Task<bool> ReduceBasketItem(string buyerId, int productId, int quantity)
+        {
+            var basket = await RetrieveBasket(buyerId);
+            var product = await GetProduct(productId);
+            if (product == null)
+            {
+                return false;
+            }
+
+            basket.ReduceBasketItem(product, quantity);
+            return await _unitOfWork.CommitAsync();
+        }
         public string GetBuyerId(HttpRequest httpRequest)
         {
             return httpRequest.Cookies[BUYER_ID_KEY];

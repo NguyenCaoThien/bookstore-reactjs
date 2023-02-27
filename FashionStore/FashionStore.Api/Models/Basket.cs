@@ -1,4 +1,5 @@
 ﻿using FashionStore.Api.Controllers.Models;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace FashionStore.Api.Models
 {
@@ -29,6 +30,16 @@ namespace FashionStore.Api.Models
                 };
 
                 BasketItems.Add(basketItem);
+            }
+        }
+
+        public void ReduceBasketItem(Product product, int quantity)
+        {
+            var existedBasket = BasketItems.FirstOrDefault(p => p.ProductId == product.Id);
+
+            if(existedBasket != null && existedBasket.Quantity > 1)
+            {
+                existedBasket.Quantity -= quantity;
             }
         }
     }
