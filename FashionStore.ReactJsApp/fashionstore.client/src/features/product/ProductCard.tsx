@@ -9,21 +9,24 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useStoreContext } from "../../context/StoreContext";
 import { Product } from "../../models/product";
 import { basketServices } from "../../services/basket-service";
+import { store } from "../../store/configureStore";
+import { setBaskets } from "../basket/basketSlice";
 
 interface Props {
   product: Product;
 }
 
 const ProductCard = (props: Props) => {
-  const { setBasket } = useStoreContext();
+  const dispatch = useDispatch();
 
   const addItemToCart = async (product: Product) => {
     const basket = await basketServices.addItemToBasket(product.id, 1);
-    setBasket(basket);
+    dispatch(setBaskets(basket));
   };
 
   const { product } = props;

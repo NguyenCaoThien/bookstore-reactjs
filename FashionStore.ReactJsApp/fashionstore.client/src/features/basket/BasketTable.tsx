@@ -2,30 +2,18 @@ import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { basketServices } from "../../services/basket-service";
 import { Basket } from "../../models/basket";
 import { getCookie } from "../../commons/common-helper";
 import { useStoreContext } from "../../context/StoreContext";
 import { BasketItem } from "../../models/basketitem";
+import { useDispatch, useSelector } from "react-redux";
+import { store, useAppSelector } from "../../store/configureStore";
+import { setBaskets } from "./basketSlice";
 
 const BasketTable = () => {
-	const { basket, setBasket } = useStoreContext();
-	useEffect(() => {
-		setBasketInfor();
-	}, [basket]);
-
-	const setBasketInfor = async () => {
-		const myCookie = getCookie("buyerId");
-
-		if (myCookie == null) {
-			return;
-		}
-
-		const basketInfor: Basket = await getBasketInfor(myCookie ?? "");
-		const newBasket = Object.assign({}, basketInfor);
-		setBasket(newBasket);
-	}
+	const { basket } = useAppSelector(state => state.basket)
 
 	const getBasketInfor = async (buyerId: string): Promise<Basket> => {
 		return await basketServices.getBasket(buyerId);
