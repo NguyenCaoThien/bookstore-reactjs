@@ -9,26 +9,43 @@ import { getCookie } from "../../commons/common-helper";
 import { useStoreContext } from "../../context/StoreContext";
 import { BasketItem } from "../../models/basketitem";
 import { useDispatch, useSelector } from "react-redux";
-import { store, useAppSelector } from "../../store/configureStore";
-import { setBaskets } from "./basketSlice";
+import { store, useAppDispatch, useAppSelector } from "../../store/configureStore";
+import { addBasketItemAsync, reduceBasketItemAsync, removeBasketItemAsync, setBaskets } from "./basketSlice";
 
 const BasketTable = () => {
-	const { basket } = useAppSelector(state => state.basket)
+	const { basket, } = useAppSelector(state => state.basket)
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		setBasketInfor();
+	}, []);
 
 	const getBasketInfor = async (buyerId: string): Promise<Basket> => {
 		return await basketServices.getBasket(buyerId);
 	}
 
+	const setBasketInfor = async () => {
+		const myCookie = getCookie("buyerId");
+
+		if (myCookie == null) {
+			return;
+		}
+
+		const basketInfor: Basket = await getBasketInfor(myCookie ?? "");
+		const newBasket = Object.assign({}, basketInfor);
+		setBaskets(newBasket);
+	}
+
 	const onIncreaseItem = async (basketItem: BasketItem) => {
-		await basketServices.addItemToBasket(basketItem.productId, 1);
+		dispatch(addBasketItemAsync({ productId: basketItem.productId, quantity: 1 }));
 	}
 
 	const onDecreaseItem = async (basketItem: BasketItem) => {
-		await basketServices.reduceBasketItem(basketItem.productId, 1);
+		dispatch(reduceBasketItemAsync({ productId: basketItem.productId, quantity: 1 }));
 	}
 
 	const removeBasketItem = async (basketItem: BasketItem) => {
-		await basketServices.removeBasketItem(basketItem.productId);
+		dispatch(removeBasketItemAsync({ productId: basketItem.productId }));
 	}
 	return (
 		<>
@@ -58,7 +75,7 @@ const BasketTable = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{basket?.basketItemDtos.map((basket) => (
+						{basket?.basketItemDtos?.map((basket) => (
 							<TableRow key={basket.id}>
 								<TableCell>
 									{basket.productName}

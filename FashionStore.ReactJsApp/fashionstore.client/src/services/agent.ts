@@ -38,8 +38,13 @@ const postAsync = (url: string, body: {}): Promise<any> => {
   });
 };
 
-const deleteAsync = (url: string) => {
-  axios.delete(url).then(responseBody);
+const deleteAsync = (url: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(url)
+      .then((data) => resolve(data.data))
+      .catch((error) => errorHandler(error, reject));
+  });
 };
 
 export const serviceRequest = {

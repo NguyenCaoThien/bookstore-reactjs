@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useStoreContext } from '../context/StoreContext';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../store/configureStore';
 
 const pages = [
   {
@@ -45,13 +46,12 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const AppHeader = () => {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const { basket } = useStoreContext();
   const [numOfBasketItem, setNumOfBasketItem] = useState<number>(0);
+  const { basket } = useAppSelector(state => state.basket);
 
   useEffect(() => {
-    const total: number = basket?.basketItemDtos.reduce((total, item) => {
+    const total: number = basket?.basketItemDtos?.reduce((total, item) => {
       return total + item.productStockQuantity;
     }, 0) ?? 0;
 

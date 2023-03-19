@@ -13,7 +13,7 @@ const getBasket = (buyerId: string): Promise<Basket> => {
   return serviceRequest.getAsync<Basket>(`${basketUrl}/getbasket?buyerId=${buyerId}`);
 }
 
-const reduceBasketItem = (productId: number, quantity: number): Promise<boolean> => {
+const reduceBasketItem = (productId: number, quantity: number) => {
   const requestBody = {
     productId: productId,
     productStockQuantity: quantity,
