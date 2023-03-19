@@ -6,10 +6,8 @@ import { useEffect } from "react";
 import { basketServices } from "../../services/basket-service";
 import { Basket } from "../../models/basket";
 import { getCookie } from "../../commons/common-helper";
-import { useStoreContext } from "../../context/StoreContext";
 import { BasketItem } from "../../models/basketitem";
-import { useDispatch, useSelector } from "react-redux";
-import { store, useAppDispatch, useAppSelector } from "../../store/configureStore";
+import { useAppDispatch, useAppSelector } from "../../store/configureStore";
 import { addBasketItemAsync, reduceBasketItemAsync, removeBasketItemAsync, setBaskets } from "./basketSlice";
 
 const BasketTable = () => {
@@ -32,8 +30,7 @@ const BasketTable = () => {
 		}
 
 		const basketInfor: Basket = await getBasketInfor(myCookie ?? "");
-		const newBasket = Object.assign({}, basketInfor);
-		setBaskets(newBasket);
+		dispatch(setBaskets({ ...basketInfor }));
 	}
 
 	const onIncreaseItem = async (basketItem: BasketItem) => {

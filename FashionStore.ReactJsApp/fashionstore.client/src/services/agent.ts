@@ -8,7 +8,6 @@ const enum ErrorCodes {
 axios.defaults.baseURL = "http://localhost:7005/api"
 axios.defaults.withCredentials = true;
 
-const responseBody = (data: AxiosResponse) => data.data;
 const errorHandler = (error: any, reject: any) => {
   if (
     error?.response?.status === ErrorCodes.InternalServer &&
