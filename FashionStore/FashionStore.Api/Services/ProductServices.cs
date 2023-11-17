@@ -1,6 +1,7 @@
 ﻿using FashionStore.Api.Controllers.Models;
 using FashionStore.Api.Interfaces.IRepos;
 using FashionStore.Api.Interfaces.IServices;
+using FashionStore.Api.Parameters;
 
 namespace FashionStore.Api.Services
 {
@@ -19,9 +20,9 @@ namespace FashionStore.Api.Services
             return await _unitOfWork.ProductRepository.GetById(productId);
         }
 
-        public async Task<IEnumerable<Product>> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetProducts(ProductParams productParams)
         {
-            return await _unitOfWork.ProductRepository.GetAlls();
+            return await _unitOfWork.ProductRepository.GetProducts(productParams);
         }
         #endregion
     }

@@ -1,6 +1,6 @@
-﻿using FashionStore.Api.Controllers.Data;
-using FashionStore.Api.Controllers.Models;
+﻿using FashionStore.Api.Controllers.Models;
 using FashionStore.Api.Interfaces.IServices;
+using FashionStore.Api.Parameters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FashionStore.Api.Controllers
@@ -16,9 +16,9 @@ namespace FashionStore.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAlls()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromQuery] ProductParams productParams)
         {
-            var products = await _productServices.GetAllProducts();
+            var products = _productServices.GetProducts(productParams);
             return Ok(products);
         }       
 
