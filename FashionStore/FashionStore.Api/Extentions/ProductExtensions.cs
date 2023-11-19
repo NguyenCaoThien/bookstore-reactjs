@@ -15,5 +15,16 @@ namespace FashionStore.Api.Extentions
 
             return query;
         }
+
+        public static IQueryable<Product> Search(this IQueryable<Product> query, string searchBy)
+        {
+            if (string.IsNullOrEmpty(searchBy))
+            {
+                return query;
+            }
+
+            var lowerCaseSearchBy = searchBy.Trim().ToLower();
+            return query.Where(p => p.Name.Contains(lowerCaseSearchBy));
+        }
     }
 }

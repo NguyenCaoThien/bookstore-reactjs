@@ -4,6 +4,6 @@ namespace FashionStore.Api.Parameters
 {
     public class ProductParams : PageListParams
     {
-        public string OrderBy { get; set; }
+        public string OrderBy { get; set; } = string.Empty;
     }
 }

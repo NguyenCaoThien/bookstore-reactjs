@@ -17,12 +17,12 @@ namespace FashionStore.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromQuery] ProductParams productParams)
+        public async Task<ActionResult<PageList<Product>>> GetProducts([FromQuery] ProductParams productParams)
         {
             var products = await _productServices.GetProducts(productParams);
             Response.AddPaginationHeader(products.MetaData);
 
-            return Ok(products.ToList());
+            return Ok(products);
         }       
 
         [HttpGet("id")]
