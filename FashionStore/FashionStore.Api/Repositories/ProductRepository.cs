@@ -13,12 +13,11 @@ namespace FashionStore.Api.Repositories
             
         }
 
-        public async Task<IEnumerable<Product>> GetProducts(ProductParams productParams)
+        public async Task<PageList<Product>> GetProducts(ProductParams productParams)
         {
             var query = _fashionStoreDbContext.Products.Sort(productParams.OrderBy).AsQueryable();
             var items = await PageList<Product>.ToPageList(query, productParams.PageNumber, productParams.PageSize);
-
-            return items.ToList();
+            return items;
         }
     }
 }
