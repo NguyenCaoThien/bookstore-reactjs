@@ -16,7 +16,7 @@ namespace FashionStore.Api.Controllers
             _productServices = productServices;
         }
 
-        [HttpGet]
+        [HttpGet("products")]
         public async Task<ActionResult<PageList<Product>>> GetProducts([FromQuery] ProductParams productParams)
         {
             var products = await _productServices.GetProducts(productParams);

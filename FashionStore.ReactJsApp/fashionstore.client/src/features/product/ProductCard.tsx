@@ -8,13 +8,10 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useStoreContext } from "../../context/StoreContext";
 import { Product } from "../../models/product";
 import { basketServices } from "../../services/basket-service";
-import { store } from "../../store/configureStore";
 import { setBaskets } from "../basket/basketSlice";
 
 interface Props {

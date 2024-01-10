@@ -7,5 +7,11 @@ export interface Product {
 	type?: string;
 	brand: string;
 	quantityInStock?: number;
-  publicId?: string;
+	publicId?: string;
+}
+
+export interface IProductParams {
+	orderBy: string;
+	pageNumber: number;
+	pageSize: number;
 }

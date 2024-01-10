@@ -1,27 +1,24 @@
 import { Grid } from "@mui/material";
 import ProductCard from "./ProductCard";
-import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Product } from "../../models/product";
+import { getProducts } from "./productSlice";
+import { useAppDispatch, useAppSelector } from "../../store/configureStore";
 
 const ProductList = () => {
-	const [products, setProducts] = useState<Product[]>([
-	]);
+	const { products } = useAppSelector(state => state.product);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		axios.get('http://localhost:7005/api/product')
-			.then((response) => {
-				setProducts(response.data);
-			}).catch(error => console.log("error", error));
-	}, []);
+		console.log("come here")
+		dispatch(getProducts());
+	}, [products]);
 
-	if (!products) {
-		return null;
-	}
+
 
 	return (
 		<Grid container spacing={{ xs: 2, md: 3 }}>
-			{products.map((product: Product, index: number) => (
+			{products.length > 0 && products?.map((product: Product, index: number) => (
 				<Grid item xs={2} sm={4} md={4} key={index}>
 					<ProductCard product={product} />
 				</Grid>
