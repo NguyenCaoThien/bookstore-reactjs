@@ -1,15 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Product } from "../../models/product";
+import { IProduct, IProductParams } from "../../models/product";
 import { productServices } from "../../services/product-service";
+import { RootState } from "../../store/configureStore";
 
-interface IProduct {
-	products: Product[],
+interface IProductState {
+	products: IProduct[],
 	status: string;
+	productParams: IProductParams
+
+}
+const getAxiosProductParams = (productParams: IProductParams) => {
+	const params = new URLSearchParams();
+	params.append('pageNumber', productParams.pageNumber.toString());
+	params.append('pageSize', productParams.pageSize.toString());
+	params.append('orderBy', productParams.orderBy);
+
+	return params;
 }
 
-const initialState: IProduct = {
-	products: {} as Product[],
-	status: ""
+const initProductParams = () => {
+	const productParams: IProductParams = {
+		orderBy: "price",
+		pageNumber: 2,
+		pageSize: 5
+	}
+
+	return productParams;
+}
+const initialState: IProductState = {
+	products: {} as IProduct[],
+	status: "",
+	productParams: initProductParams()
 }
 
 export const productSlice = createSlice({
@@ -32,10 +53,11 @@ export const productSlice = createSlice({
 	})
 })
 
-export const getProducts = createAsyncThunk<Product[]>(
+export const getProducts = createAsyncThunk<IProduct[], void, { state: RootState }>(
 	'product/getProductAsync', async (_, thunkApi) => {
 		try {
-			return await productServices.getProducts();
+			const params = getAxiosProductParams(thunkApi.getState().product.productParams);
+			return await productServices.getProducts(params);
 		}
 		catch (error: any) {
 			return thunkApi.rejectWithValue({ error: error.data })

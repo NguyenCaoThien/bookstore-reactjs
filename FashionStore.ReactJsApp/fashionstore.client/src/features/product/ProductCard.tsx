@@ -10,18 +10,18 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Product } from "../../models/product";
+import { IProduct } from "../../models/product";
 import { basketServices } from "../../services/basket-service";
 import { setBaskets } from "../basket/basketSlice";
 
 interface Props {
-  product: Product;
+  product: IProduct;
 }
 
 const ProductCard = (props: Props) => {
   const dispatch = useDispatch();
 
-  const addItemToCart = async (product: Product) => {
+  const addItemToCart = async (product: IProduct) => {
     const basket = await basketServices.addItemToBasket(product.id, 1);
     dispatch(setBaskets(basket));
   };

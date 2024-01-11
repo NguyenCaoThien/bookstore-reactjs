@@ -3,17 +3,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { createData } from "../../commons/common-helper";
-import { Product } from "../../models/product";
+import { IProduct } from "../../models/product";
 
 
 const ProductDetail = () => {
-	const [product, setProduct] = useState<Product>();
+	const [product, setProduct] = useState<IProduct>();
 	const { productId } = useParams();
 
 	useEffect(() => {
 		axios.get(`http://localhost:7005/api/product/id?id=${productId}`)
 			.then((response) => {
-				setProduct(response.data as Product);
+				setProduct(response.data as IProduct);
 			}, error => {
 				console.log("error: ", error);
 			})
